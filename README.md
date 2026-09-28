@@ -9,7 +9,7 @@ Abrilo y a jugar.
 
 ## Jugar online
 
-[**Jugar ahora →**](https://github.com/hashwar-gif/alto-crimen-la-paz-city)
+[**Jugar ahora →**](https://hashwar-gif.github.io/alto-crimen-la-paz-city/)
 
 ## Jugar en local
 
