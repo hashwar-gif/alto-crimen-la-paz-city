@@ -57,15 +57,17 @@ Ruta de minibús, taxi, entrega de sal y correo, tour al mirador, carreras, enca
 de Don Wilson en el taller, vuelo de avioneta aros incluidos, fiesta y huida de la
 policía.
 
-## Los 3 mapas
+## Mapas
 
-| # | Mapa | Tamaño | Zonas |
-|---|---|---|---|
-| 1 | Pequeño | 8 × 7 km | La Ceja, Centro, Sopocachi, Miraflores, Obrajes |
-| 2 | Mediano | 15 × 11,4 km | Suma El Alto (16 de Julio, Río Seco, Villa Adela, aeropuerto), Irpavi, Calacoto, Línea Azul completa |
-| 3 | Grande | 18,6 × 13,8 km | Toda La Paz y El Alto: Senkata, aeropuerto internacional, Achumani, Mallasa, Valle de la Luna y la Muela del Diablo |
+| # | Mapa | Tamaño | Zonas | Estado |
+|---|---|---|---|---|
+| 1 | Pequeño | 8 × 7 km | La Ceja, Centro, Sopocachi, Miraflores, Obrajes | **Juego completo** |
+| 2 | Mediano | 15 × 11,4 km | Suma El Alto (16 de Julio, Río Seco, Villa Adela, aeropuerto), Irpavi, Calacoto, Línea Azul completa | 🔒 Pase Completo |
+| 3 | Grande | 18,6 × 13,8 km | Toda La Paz y El Alto: Senkata, aeropuerto internacional, Achumani, Mallasa, Valle de la Luna y la Muela del Diablo | 🔒 Pase Completo |
 
-> El mapa grande es el recomendado para PC. En celulares puede ir justo.
+Esta versión pública trae el **mapa pequeño** completo. Los mapas mediano y grande
+aparecen en el selector pero bloqueados; sus datos no forman parte del archivo, así que
+la descarga pesa ~1 MB en vez de ~2,9 MB.
 
 ## Cómo está hecho
 
