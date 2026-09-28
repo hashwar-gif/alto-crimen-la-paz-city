@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# El juego es un HTML autocontenido: no queremos que Git lo toque.
+index.html -diff -merge linguist-generated=true

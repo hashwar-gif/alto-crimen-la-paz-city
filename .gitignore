@@ -1,0 +1,18 @@
+# El archivo original con el candado del "Pase Completo".
+# La version publicada vive en index.html.
+alto-crimen-gratis.html
+
+# Sistema
+Thumbs.db
+desktop.ini
+ehthumbs.db
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node / build (el juego no los necesita, por si agregas tooling)
+node_modules/
+npm-debug.log*

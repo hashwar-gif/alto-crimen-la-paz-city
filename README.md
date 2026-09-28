@@ -1,0 +1,79 @@
+# Alto Crimen: La Paz City
+
+Juego de acción, sneaking y vida callejera ambientado en **La Paz, Bolivia**. Manejá
+minibús y taxi, hacé chapu, esquivá a la policía, asaltabos, corréte de Los Cóndores y
+subí de rango en tres mapas que cubren toda la ciudad y El Alto.
+
+Todo vive en **un solo archivo HTML**. No hay build, ni dependencias, ni servidor.
+Abrilo y a jugar.
+
+## Jugar online
+
+[**Jugar ahora →**](https://github.com/hashwar-gif/alto-crimen-la-paz-city)
+
+## Jugar en local
+
+Abrí `index.html` en cualquier navegador moderno (Chrome, Edge, Firefox, Safari).
+
+```bash
+# O servilo local (recomendado para que el guardado funcione consistente)
+python -m http.server 8000
+# luego abrí http://localhost:8000
+```
+
+En celular también funciona con controles táctiles (joystick + botones en pantalla).
+La partida se guarda sola en el navegador con `localStorage`.
+
+## Controles
+
+| Tecla | Acción |
+|---|---|
+| `↑` `↓` `←` `→` | Mover / conducir |
+| `E` | Manejar · volar · comprar C (celular) |
+| `ESPACIO` | Frenar / derrapar |
+| `F` | Subir de pasajero |
+| `J` | Golpe |
+| `K` | Disparar |
+| `G` | Asaltar |
+| `Q` | Cambiar arma |
+| `N` | Mapa |
+| `R` | Radio |
+| `X` | Cancelar misión |
+| `P` | Pausa |
+| `O` | Opciones |
+| `Y` | Jugador 2 |
+| `1` `2` `3` | Elegir mapa |
+
+## Modos
+
+- **Nueva historia** — ruta de **9 capítulos** de El Alto a Plaza Murillo. Elegís
+  personaje (chofer o bandas) y avanzás según el guion.
+- **Juego libre** — toda la ciudad, sin guion, con todas las misiones libres.
+- **Continuar** — retoma tu partida guardada.
+
+## Misiones
+
+Ruta de minibús, taxi, entrega de sal y correo, tour al mirador, carreras, encargos
+de Don Wilson en el taller, vuelo de avioneta aros incluidos, fiesta y huida de la
+policía.
+
+## Los 3 mapas
+
+| # | Mapa | Tamaño | Zonas |
+|---|---|---|---|
+| 1 | Pequeño | 8 × 7 km | La Ceja, Centro, Sopocachi, Miraflores, Obrajes |
+| 2 | Mediano | 15 × 11,4 km | Suma El Alto (16 de Julio, Río Seco, Villa Adela, aeropuerto), Irpavi, Calacoto, Línea Azul completa |
+| 3 | Grande | 18,6 × 13,8 km | Toda La Paz y El Alto: Senkata, aeropuerto internacional, Achumani, Mallasa, Valle de la Luna y la Muela del Diablo |
+
+> El mapa grande es el recomendado para PC. En celulares puede ir justo.
+
+## Cómo está hecho
+
+- HTML + CSS + JavaScript puros, canvas 2D, cero dependencias.
+- Mapas definidos como base64 dentro del propio archivo, así el juego viaja entero
+  en una sola página.
+- La web se publica sola con GitHub Actions a GitHub Pages en cada `push` a `main`.
+
+## Licencia
+
+MIT — ver [LICENSE](LICENSE).
