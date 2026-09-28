@@ -177,7 +177,32 @@ body.touch .tonly{display:block}
 #title .plate:disabled{opacity:.4;transform:none;background:rgba(9,7,18,.9)}
 #title .press{font-size:8px;opacity:.8}
 @media (max-aspect-ratio:23/20){#title{padding:calc(58vh + 8px) 14px 18px 14px!important}#title .tcol{max-width:94vw}#title .menu{width:92vw;grid-template-columns:1fr 1fr}#title .plate.main{grid-column:1/-1}#title .logo .lp{font-size:clamp(34px,11vw,70px)}#title .logo .city{font-size:clamp(16px,5vw,30px)}#title .logo{box-shadow:6px 6px 0 #d52b1e}}
-</style>
+
+/* ============================================================
+   Celulares en horizontal: el panel de 9 botones en 2 columnas
+   mide 330px de alto y se come al minimapa. Con 3 columnas baja
+   a 146px. El minimapa necesita !important porque el juego le
+   escribe width/height inline desde JS.
+   ============================================================ */
+@media (orientation:landscape) and (max-height:560px){
+  #btns{grid-template-columns:repeat(3,auto);gap:7px;
+        bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  #btns button{height:44px;min-width:60px;padding:0 4px;font-size:9px;
+               border-width:2px;box-shadow:2px 2px 0 var(--tinta)}
+  body.touch #mm{top:calc(6px + env(safe-area-inset-top,0px))!important;
+                 width:84px!important;height:70px!important;
+                 border-width:2px;box-shadow:0 0 0 2px var(--nieve)}
+  body.touch #zone{top:calc(82px + env(safe-area-inset-top,0px))}
+  body.touch #hint{bottom:calc(168px + env(safe-area-inset-bottom,0px))}
+}
+/* Pantallas muy bajas (viewport < 260px): el minimapa se achica
+   para no tocar el panel de botones, y la etiqueta de zona estorba. */
+@media (orientation:landscape) and (max-height:260px){
+  body.touch #mm{width:64px!important;height:52px!important}
+  body.touch #zone{display:none}
+  #btns button{height:44px;font-size:8px}
+  #btns{grid-template-columns:repeat(3,auto);gap:6px}
+}</style>
 </head>
 <body>
 <iframe id="hwintro" srcdoc="<!doctype html>
@@ -300,6 +325,15 @@ html,body{height:100%;margin:0;background:var(--bg);overflow:hidden;color:var(--
   .s-impact{animation:none}
   .ring,#grid,.s-tech #word{animation:none}
   .s-impact #flash{animation:none}
+}
+
+  #btns button{height:44px;min-width:60px;padding:0 4px;font-size:9px;
+               border-width:2px;box-shadow:2px 2px 0 var(--tinta)}
+  body.touch #mm{top:calc(6px + env(safe-area-inset-top,0px))!important;
+                 width:84px!important;height:70px!important;
+                 border-width:2px;box-shadow:0 0 0 2px var(--nieve)}
+  body.touch #zone{top:calc(82px + env(safe-area-inset-top,0px))}
+  body.touch #hint{bottom:calc(168px + env(safe-area-inset-bottom,0px))}
 }
 </style>
 </head>
