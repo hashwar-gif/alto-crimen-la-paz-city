@@ -49,8 +49,8 @@ button:focus-visible{outline:3px solid var(--oro);outline-offset:3px}
 #btns{position:absolute;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:auto auto;gap:10px}
 #btns button{pointer-events:auto;font-size:11px;min-width:76px;height:58px;padding:0 8px;color:var(--tinta);border:3px solid var(--tinta);box-shadow:3px 3px 0 var(--tinta)}
 #bE{background:var(--oro)}#bF{background:#7dff8a}#bB{background:#e8e2d0}#bH{background:#7dd3fc}
-body.touch #mm{top:calc(104px + env(safe-area-inset-top,0px));bottom:auto;width:104px;height:88px}
-body.touch #zone{bottom:auto;top:calc(196px + env(safe-area-inset-top,0px));font-size:12px}
+body.touch #mm{top:calc(116px + env(safe-area-inset-top,0px));bottom:auto;width:104px;height:88px}
+body.touch #zone{bottom:auto;top:calc(210px + env(safe-area-inset-top,0px));font-size:12px}
 body.touch #help{display:none}
 body.touch #msg{font-size:11px}
 body.touch #hint{bottom:calc(190px + env(safe-area-inset-bottom,0px));font-size:8px;white-space:normal;width:80vw;text-align:center}
@@ -178,21 +178,7 @@ body.touch .tonly{display:block}
 #title .press{font-size:8px;opacity:.8}
 @media (max-aspect-ratio:23/20){#title{padding:calc(58vh + 8px) 14px 18px 14px!important}#title .tcol{max-width:94vw}#title .menu{width:92vw;grid-template-columns:1fr 1fr}#title .plate.main{grid-column:1/-1}#title .logo .lp{font-size:clamp(34px,11vw,70px)}#title .logo .city{font-size:clamp(16px,5vw,30px)}#title .logo{box-shadow:6px 6px 0 #d52b1e}}
 
-/* ============================================================
-   Celulares en horizontal: el panel de 9 botones en 2 columnas
-   mide 330px de alto y se come al minimapa. Con 3 columnas baja
-   a 146px. El minimapa necesita !important porque el juego le
-   escribe width/height inline desde JS.
-   ============================================================ */
-@media (orientation:landscape) and (max-height:560px){
-  #btns{grid-template-columns:repeat(3,auto);gap:7px;
-        bottom:calc(10px + env(safe-area-inset-bottom,0px))}
-  #btns button{height:44px;min-width:60px;padding:0 4px;font-size:9px;
-               border-width:2px;box-shadow:2px 2px 0 var(--tinta)}
-  body.touch #mm{top:calc(6px + env(safe-area-inset-top,0px))!important;
-                 width:84px!important;height:70px!important;
-                 border-width:2px;box-shadow:0 0 0 2px var(--nieve)}
-  body.touch #zone{top:calc(82px + env(safe-area-inset-top,0px))}
+
   body.touch #hint{bottom:calc(168px + env(safe-area-inset-bottom,0px))}
 }
 /* Pantallas muy bajas (viewport < 260px): el minimapa se achica
@@ -202,6 +188,121 @@ body.touch .tonly{display:block}
   body.touch #zone{display:none}
   #btns button{height:44px;font-size:8px}
   #btns{grid-template-columns:repeat(3,auto);gap:6px}
+}/* ============================================================
+   Celulares en horizontal.
+
+   Antes el lado derecho era un caos: #tr (dinero, vidas, reloj,
+   barra de vida y 7 botones) caia desde arriba, el minimapa
+   estaba en top:104px encima suyo, la etiqueta de zona en
+   top:196px y el panel de 9 botones en bottom. Todo eso se
+   pisaba entre si. Ahora:
+
+     - #rhud agrupa dinero, vidas, mapa y zona en una sola
+       columna flex a la derecha, que por construccion no se
+       solapan entre si.
+     - #btns pasa a disposicion de mando: 4 botones de accion
+       en rombo (arriba/izquierda/derecha/abajo) y los 5
+       auxiliares en un bloque de 2 columnas a la izquierda,
+       con CEL abajo ocupando el ancho completo.
+     - Se respeta el notch con env(safe-area-inset-*).
+
+   El minimapa necesita !important porque el juego le escribe
+   width/height en estilo inline desde JS.
+   ============================================================ */
+#rhud{display:contents}
+#sysbtns{display:none}
+
+@media (orientation:landscape) and (max-height:560px){
+
+  /* ---------- columna derecha ---------- */
+  body.touch #rhud{display:flex;position:absolute;
+    right:calc(6px + env(safe-area-inset-right,0px));
+    top:calc(4px + env(safe-area-inset-top,0px));
+    width:114px;flex-direction:column;align-items:flex-end;gap:4px}
+
+  body.touch #tr{position:static;right:auto;top:auto;width:100%;
+                 text-align:right;pointer-events:none}
+  body.touch #tr>div{margin-top:0!important}
+  body.touch #money{font-size:13px;line-height:1.1}
+  body.touch #vida{font-size:9px!important;margin-top:1px!important}
+  body.touch #clock{font-size:9px;margin-top:2px}
+  body.touch #hpwrap{width:100%;height:5px;margin:4px 0 0}
+  body.touch #tr button{pointer-events:auto;font-size:9px;margin:4px 0 0 4px;
+                        padding:5px 6px;border-width:2px}
+  body.touch #zoomrow{display:none!important}
+  body.touch #alt,body.touch #done,body.touch #stars,body.touch #radio{display:none}
+  body.touch #hpwrap{width:100%;height:5px;margin:4px 0 0}
+
+  /* los 4 botones de sistema salen de la columna y van al centro
+     inferior, que es donde START/SELECT caen en un mando */
+  #sysbtns{position:absolute;left:calc(158px + env(safe-area-inset-left,0px));
+    bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    display:none;gap:6px;pointer-events:none}
+  body.touch #sysbtns{display:flex}
+  body.touch #sysbtns button{pointer-events:auto;font-size:8px;height:32px;
+    padding:0 8px;color:var(--nieve);background:rgba(7,6,13,.7);
+    border:2px solid var(--nieve);cursor:pointer}
+
+  body.touch #mm{position:static;right:auto;top:auto;bottom:auto;
+                 width:104px!important;height:88px!important;
+                 border-width:2px;box-shadow:0 0 0 2px var(--nieve)}
+  body.touch #zone{position:static;right:auto;top:auto;bottom:auto;
+                   font-size:11px;height:13px;line-height:1.1}
+
+  /* ---------- mando ---------- */
+  #btns{grid-template-columns:64px 64px 46px 46px 46px;
+        grid-template-rows:repeat(3,44px);
+        gap:6px;right:calc(8px + env(safe-area-inset-right,0px));
+        bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  #btns button{width:100%;min-width:0;height:44px;padding:0 2px;
+               font-size:8px;border-width:2px;
+               box-shadow:2px 2px 0 var(--tinta)}
+
+  /* rombo de accion */
+  #bK{grid-area:1/4;border-radius:50%}          /* DISPARA */
+  #bJ{grid-area:2/3;border-radius:50%}          /* GOLPE   */
+  #bG{grid-area:2/5;border-radius:50%}          /* ASALTA  */
+  #bQ{grid-area:3/4;border-radius:50%}          /* ARMA    */
+
+  /* auxiliares, bloque izquierdo */
+  #bH{grid-area:1/1}                            /* PIIP   */
+  #bB{grid-area:1/2}                            /* FRENO  */
+  #bF{grid-area:2/1}                            /* PASAJE */
+  #bE{grid-area:2/2}                            /* SUBIR  */
+  #bC{grid-area:3/1/4/3}                        /* CEL, ancho completo */
+
+  /* el joystick no debe quedar bajo el panel */
+  body.touch #tl{max-width:44vw}
+  body.touch #hint{bottom:calc(168px + env(safe-area-inset-bottom,0px));
+                   width:50vw}
+}
+
+/* pantallas de celular mas bajas: achica columna y mando */
+@media (orientation:landscape) and (max-height:400px){
+  body.touch #rhud{width:96px}
+  body.touch #mm{width:88px!important;height:75px!important}
+  #btns{grid-template-columns:58px 58px 44px 44px 44px;
+        grid-template-rows:repeat(3,44px);gap:5px}
+  #btns button{height:44px;font-size:8px}
+  body.touch #hint{bottom:calc(156px + env(safe-area-inset-bottom,0px))}
+}
+
+@media (orientation:landscape) and (max-height:320px){
+  body.touch #rhud{width:88px}
+  body.touch #mm{width:80px!important;height:68px!important}
+  body.touch #zone{display:none}
+  #btns{grid-template-columns:52px 52px 44px 44px 44px;
+        grid-template-rows:repeat(3,44px);gap:5px}
+  #btns button{height:44px;font-size:7px}
+  body.touch #hint{display:none}
+}
+
+@media (orientation:landscape) and (max-height:250px){
+  body.touch #rhud{width:70px}
+  body.touch #mm,body.touch #zone{display:none}
+  #btns{grid-template-columns:48px 48px 44px 44px 44px;
+        grid-template-rows:repeat(3,44px);gap:4px}
+  #btns button{height:44px;font-size:7px}
 }</style>
 </head>
 <body>
@@ -631,16 +732,16 @@ window.__splashDone=function(){const el=document.getElementById('hwsplash');if(!
 
 <div id="hud">
   <div id="tl"><div id="street"></div><div id="mission"></div></div>
-  <div id="tr">
+  <div id="rhud"><div id="tr">
     <div id="money">Bs 0</div><div id="vida" style="font-size:9px;margin-top:3px;text-shadow:1px 1px 0 #000">♥ 100</div>
     <div id="clock"></div><div id="alt"></div><div id="done"></div><div id="radio"></div>
     <div id="stars"></div>
     <div id="hpwrap"><div id="hp"></div></div>
-    <div><button id="optb">⚙</button><button id="mapb">MAPA</button><button id="pauseb">PAUSA</button><button id="mute" aria-label="Silenciar sonido">🔊</button></div>
+    
     <div id="zoomrow" style="display:flex;justify-content:flex-end;gap:6px;margin-top:6px"><button id="zinb" title="Acercar cámara">＋</button><button id="zoutb" title="Alejar cámara">－</button><button id="fullb" title="Pantalla completa">⛶</button></div>
   </div>
   <canvas id="mm"></canvas>
-  <div id="zone"></div>
+  <div id="zone"></div></div><div id="sysbtns"><button id="optb">⚙</button><button id="mapb">MAPA</button><button id="pauseb">PAUSA</button><button id="mute" aria-label="Silenciar sonido">🔊</button></div>
   <div id="msg"></div>
   <div id="hint"></div>
   <div id="help">E manejar / volar / comprar<br>C celular · O opciones · Y jugador 2<br>ESPACIO frenar / derrapar<br>F ir de pasajero<br>J golpe  K disparar  G asaltar  Q arma<br>N mapa   R radio<br>P pausa   X cancelar misión</div>
