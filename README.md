@@ -44,6 +44,19 @@ La partida se guarda sola en el navegador con `localStorage`.
 | `Y` | Jugador 2 |
 | `1` `2` `3` | Elegir mapa |
 
+## Música
+
+- **Portada** — al abrir el juego suena el tema *Staley*. En PC arranca solo; en
+  el celular el navegador exige un toque, así que aparece el cartel
+  *"TOCA LA PANTALLA PARA LA MÚSICA"* hasta que empieza. Se puede apagar desde
+  **Opciones → Música en portada**.
+- **Radio JDR-IA 100.1 FM** — nueva estación dentro del juego, con los temas
+  *Verde adicción*, *Mujer* y *Ojitos lindos*. Solo suena dentro de un vehículo
+  y va rotando sola al terminar cada tema. Se prende con la tecla `R` o el botón
+  **RADIO** del panel táctil.
+- **Opciones** — volumen de música, elegir tema (con anterior / siguiente) y
+  apagar la música de portada.
+
 ## Modos
 
 - **Nueva historia** — ruta de **9 capítulos** de El Alto a Plaza Murillo. Elegís
