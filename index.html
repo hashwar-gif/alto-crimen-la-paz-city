@@ -210,7 +210,8 @@ body.touch .tonly{display:block}
    width/height en estilo inline desde JS.
    ============================================================ */
 #rhud{display:contents}
-#sysbtns{display:none}
+#sysbtns{position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;pointer-events:none}
+#sysbtns button{pointer-events:auto;font-size:10px;background:rgba(7,6,13,.6);color:var(--nieve);border:2px solid var(--nieve);padding:6px 8px;cursor:pointer}
 
 @media (orientation:landscape) and (max-height:560px){
 
@@ -752,7 +753,7 @@ window.__splashDone=function(){const el=document.getElementById('hwsplash');if(!
 </div>
 
 <div id="telemenu" role="dialog" aria-label="Teleférico"></div>
-<div id="pause" class="ovl" role="dialog" aria-label="Pausa"><h2>PAUSA</h2><button id="pCont">CONTINUAR</button><button id="pMap">VER MAPA</button><button id="pTitle">SALIR A LA PORTADA</button></div>
+<div id="pause" class="ovl" role="dialog" aria-label="Pausa"><h2>PAUSA</h2><button id="pCont">CONTINUAR</button><button id="pMap">VER MAPA</button><button id="pRate">⭐ CALIFICAR EL JUEGO</button><button id="pTitle">SALIR A LA PORTADA</button></div>
 <div id="bigmap" role="dialog" aria-label="Mapa de La Paz"><canvas id="bm"></canvas>
   <div class="mtop"><b>MAPA DE LA PAZ</b><div class="layers" id="layers"></div></div>
   <div class="mctl"><button id="zin" aria-label="Acercar">+</button><button id="zout" aria-label="Alejar">−</button><button id="zme" aria-label="Centrar en mí">◎</button><button id="bmClose" aria-label="Cerrar mapa">✕</button></div>
@@ -2787,11 +2788,12 @@ function drawBigMap(){if(bm.width!==Math.round(innerWidth*MV.dpr)||bm.height!==M
  const f=focus(),[px,py]=w2s(f.x,f.y);g.save();g.translate(px,py);g.rotate(player.inCar?player.inCar.a:0);g.fillStyle='#fff';g.strokeStyle='#d52b1e';g.lineWidth=3;g.beginPath();if(player.inCar){g.moveTo(13,0);g.lineTo(-8,-9);g.lineTo(-4,0);g.lineTo(-8,9);g.closePath();}else g.arc(0,0,8,0,7);g.fill();g.stroke();g.restore();txt('TÚ',px,py-20,'#fff',9);
  g.setTransform(1,0,0,1,0,0);}
 
+const RATE_FORM_URL="PON_AQUI_TU_LINK_DE_GOOGLE_FORM";
 function openPause(){state='pause';closeMenu();$('pause').style.display='flex';save();$('pCont').focus();}
 function openMap(){state='map';closeMenu();$('pause').style.display='none';$('bigmap').style.display='block';sizeBigMap();const f=focus();MV.x=f.x;MV.y=f.y;MV.z=Math.max(mvFit(),0.5);mvClamp();showInfo(null);$('bmClose').focus();}
 function resume(){state='play';$('pause').style.display='none';$('bigmap').style.display='none';for(const k in keys)keys[k]=false;}
 function toTitle(){save();state='title';$('pause').style.display='none';$('bigmap').style.display='none';$('dialog').style.opacity=0;dT=0;$('hud').classList.remove('show');$('touch').classList.remove('show');$('title').classList.remove('hide');$('chap').classList.remove('show');talking=false;talkQ=[];story.on=false;clearGang();if(mission&&(mission.id==='chase'||mission.id==='fetch'))mission=null;updMenu();}
-$('pCont').addEventListener('click',resume);$('pMap').addEventListener('click',openMap);$('pTitle').addEventListener('click',toTitle);$('bmClose').addEventListener('click',resume);
+$('pCont').addEventListener('click',resume);$('pMap').addEventListener('click',openMap);$('pRate').addEventListener('click',()=>window.open(RATE_FORM_URL,'_blank'));$('pTitle').addEventListener('click',toTitle);$('bmClose').addEventListener('click',resume);
 $('mapb').addEventListener('click',()=>{if(state==='play')openMap();});$('optb').addEventListener('click',()=>optToggle());$('topt').addEventListener('click',()=>optToggle());$('fullb').addEventListener('click',()=>goFull());$('zinb').addEventListener('click',()=>camZoom(1));$('zoutb').addEventListener('click',()=>camZoom(-1));cv.addEventListener('wheel',e=>{if(state==='play'){e.preventDefault();camZoom(e.deltaY<0?1:-1);}},{passive:false});$('pauseb').addEventListener('click',()=>{if(state==='play')openPause();});
 
 let last=performance.now();
