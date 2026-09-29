@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2026 Alto Crimen: La Paz City
+Copyright (c) 2026 Hashwar Technologies
+Alto Crimen: La Paz City
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +20,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+DERECHOS RESERVADOS / ALL RIGHTS RESERVED
+© 2026 Hashwar Technologies
+
+Esta licencia MIT cubre unicamente el codigo fuente del juego. Los siguientes
+elementos son propiedad exclusiva de Hashwar Technologies y no se otorgan bajo
+ninguna licencia abierta:
+
+  - La marca, el nombre y el titulo "Alto Crimen: La Paz City".
+  - Los personajes, las fichas de elenco y la identidad visual.
+  - Los mapas, el guion, las misiones y los nombres propios.
+  - Toda la musica y los audios incluidos en audio/
+    (Staley, Verde adiccion, Mujer, Ojitos lindos).
+
+Se prohibe el uso comercial de estos elementos, su reventa, y la retirada de
+los avisos de copyright o de marca, sin autorizacion previa y por escrito de
+Hashwar Technologies.
+

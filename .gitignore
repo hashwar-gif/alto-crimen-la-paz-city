@@ -14,6 +14,10 @@ index.v1.bak.html
 *.mp3
 *.wav
 
+# ...pero la musica que usa el juego SI se publica, en audio/
+!audio/
+!audio/*.mp3
+
 # Sistema
 Thumbs.db
 desktop.ini

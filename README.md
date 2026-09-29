@@ -4,8 +4,8 @@ Juego de acción, sneaking y vida callejera ambientado en **La Paz, Bolivia**. M
 minibús y taxi, hacé chapu, esquivá a la policía, asaltabos, corréte de Los Cóndores y
 subí de rango en tres mapas que cubren toda la ciudad y El Alto.
 
-Todo vive en **un solo archivo HTML**. No hay build, ni dependencias, ni servidor.
-Abrilo y a jugar.
+Todo el juego cabe en **un solo `index.html`** más la carpeta `audio/` con la música.
+No hay build, ni dependencias, ni servidor. Abrilo y a jugar.
 
 ## Jugar online
 
@@ -80,15 +80,41 @@ policía.
 
 Esta versión pública trae el **mapa pequeño** completo. Los mapas mediano y grande
 aparecen en el selector pero bloqueados; sus datos no forman parte del archivo, así que
-la descarga pesa ~1 MB en vez de ~2,9 MB.
+la descarga inicial pesa ~1 MB en vez de ~2,9 MB.
 
 ## Cómo está hecho
 
 - HTML + CSS + JavaScript puros, canvas 2D, cero dependencias.
-- Mapas definidos como base64 dentro del propio archivo, así el juego viaja entero
-  en una sola página.
+- Los mapas van como base64 dentro del propio `index.html`, así que el juego arranca
+  con una sola petición.
+- La **música va en archivos `.mp3` sueltos** dentro de `audio/`, no embebida en el
+  código. Antes venía incrustada como base64 y eso obligaba a bajar 6,7 MB antes de
+  jugar; ahora `index.html` pesa 1 MB y cada tema se descarga recién cuando suena.
+  Los MP3 usan `preload="none"`, así que la radio no gasta ancho de banda hasta que
+  estás manejando.
 - La web se publica sola con GitHub Actions a GitHub Pages en cada `push` a `main`.
+
+### Archivos
+
+| Ruta | Qué es |
+|---|---|
+| `index.html` | El juego completo (código, estilos, mapas) |
+| `audio/portada-staley.mp3` | Tema de la portada |
+| `audio/radio-verde-adiccion.mp3` | Radio JDR-IA · Verde adicción |
+| `audio/radio-mujer.mp3` | Radio JDR-IA · Mujer |
+| `audio/radio-ojitos-lindos.mp3` | Radio JDR-IA · Ojitos lindos |
+
+> Si borrás la carpeta `audio/` el juego igual corre: solo pierde la música.
+
+## Derechos
+
+**© Hashwar Technologies.** Todos los derechos reservados.
+
+- Código, diseño, mapas e identidad visual: © Hashwar Technologies.
+- Música (Staley y los temas de Radio JDR-IA): © Hashwar Technologies.
+- La marca y el nombre del juego pertenecen a Hashwar Technologies.
 
 ## Licencia
 
-MIT — ver [LICENSE](LICENSE).
+MIT — ver [LICENSE](LICENSE). Los derechos de autor y marca son de Hashwar
+Technologies; la licencia MIT cubre únicamente el código.
