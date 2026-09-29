@@ -5,6 +5,15 @@
 # La version publicada vive en index.html.
 alto-crimen-gratis.html
 
+# La version completa con los 3 mapas y toda la musica JDR-IA embebida.
+# Es la fuente desde donde se extrae la musica; pesa 12,8 MB y no se publica.
+alto-crimen-pase-completo (4).html
+
+# Copies de trabajo locales
+index.v1.bak.html
+*.mp3
+*.wav
+
 # Sistema
 Thumbs.db
 desktop.ini
